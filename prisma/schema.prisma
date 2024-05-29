@@ -1,0 +1,26 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model posts {
+    id          Int    @id @default(autoincrement())
+    title       String @db.VarChar(255)
+    description String @db.Text
+    content_url String @db.VarChar(255)
+    category    String @db.VarChar(255)
+    is_hidden   Int    @db.UnsignedTinyInt
+    created_at  Int    @db.UnsignedInt
+    updated_at  Int    @db.UnsignedInt
+    additions   Json?  @db.Json
+
+    @@index([is_hidden, title])
+}
+
+model comments {
+    id Int @id @default(autoincrement())
+}
