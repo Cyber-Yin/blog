@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+    font-family: "Noto Sans SC", sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--theme);
+  }
+
+  :root {
+    --theme: #0bc5ea;
+
+    --border-primary: #2d3748;
+    --border-secondary: #4a5568;
+
+    --background-primary: #171923;
+    --background-secondary: #2d3748;
+    --background-comment: #282c34;
+
+    --font-primary: #ffffff;
+    --font-secondary: #cbd5e0;
+  }
+
+  .markdown p {
+    @apply break-all text-justify text-sm/8 md:text-base/8;
+  }
+
+  .markdown pre {
+    @apply w-full overflow-x-scroll bg-secondary p-4;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    width: 0px !important;
+    height: 0px !important;
+    background: transparent !important;
+  }
+}
