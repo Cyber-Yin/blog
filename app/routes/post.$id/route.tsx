@@ -1,7 +1,8 @@
 import { LoaderFunction, json } from "@remix-run/node";
 import { useLoaderData, useParams } from "@remix-run/react";
 import axios from "axios";
-import { MessageSquare } from "lucide-react";
+import dayjs from "dayjs";
+import { CalendarDays, MessageSquare, Tag } from "lucide-react";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
@@ -12,8 +13,8 @@ import { unified } from "unified";
 
 import DatabaseInstance from "@/lib/server/prisma.server";
 import { CommentResponseSchema } from "@/lib/types/comment";
+import { PostDetail } from "@/lib/types/post";
 
-import { Button } from "@/components/Button";
 import { useCommentContext } from "@/components/CommentProvider/hooks";
 
 import CommentCard from "./components/CommentCard";
@@ -30,9 +31,25 @@ export const loader: LoaderFunction = async ({ params }) => {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const file = await axios.get<string>(
-    `https://cdn.zengjunyin.com/blog/posts/${id}/post.md`,
-  );
+  const post = await DatabaseInstance.posts.findUnique({
+    select: {
+      title: true,
+      content_url: true,
+      cover_url: true,
+      category: true,
+      created_at: true,
+    },
+    where: {
+      id: parseInt(id),
+      is_hidden: 0,
+    },
+  });
+
+  if (!post) {
+    throw new Response("Not Found", { status: 404 });
+  }
+
+  const file = await axios.get<string>(post.content_url);
 
   const formatted = await unified()
     .use(remarkParse)
@@ -108,6 +125,7 @@ export const loader: LoaderFunction = async ({ params }) => {
     data: {
       markdown: formatted.value,
       comments: commentResponse,
+      post,
     },
   });
 };
@@ -117,6 +135,7 @@ export default function PostPage() {
     data: {
       markdown: string;
       comments: CommentResponseSchema[];
+      post: PostDetail;
     };
   }>();
 
@@ -130,6 +149,29 @@ export default function PostPage() {
 
   return (
     <>
+      <div className="relative h-72 w-full overflow-hidden rounded-lg">
+        <img
+          className="absolute h-full w-full object-cover"
+          src={data.post.cover_url}
+          alt={data.post.title}
+        />
+        <div className="absolute bottom-0 left-0 right-0 h-72 w-full bg-gradient-to-t from-black"></div>
+        <div className="absolute bottom-0 left-0 right-0 space-y-5 p-5 sm:space-y-6 sm:p-6">
+          <h1 className="text-xl font-bold sm:text-2xl">{data.post.title}</h1>
+          <div className="flex w-full items-center space-x-3 text-secondary sm:space-x-4">
+            <div className="flex items-center space-x-1 sm:space-x-2">
+              <CalendarDays className="h-4 w-4 sm:h-5 sm:w-5" />
+              <div className="text-xs sm:text-sm">
+                {dayjs(data.post.created_at).format("YYYY-MM-DD HH:mm")}
+              </div>
+            </div>
+            <div className="flex items-center space-x-1 sm:space-x-2">
+              <Tag className="h-4 w-4 sm:h-5 sm:w-5" />
+              <div className="text-xs sm:text-sm">{data.post.category}</div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div
         className="markdown space-y-6"
         dangerouslySetInnerHTML={{ __html: data.markdown }}

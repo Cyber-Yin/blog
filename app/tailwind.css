@@ -35,8 +35,12 @@
     @apply break-all text-justify text-sm/8 md:text-base/8;
   }
 
+  .markdown img {
+    @apply rounded-lg;
+  }
+
   .markdown pre {
-    @apply w-full overflow-x-scroll bg-secondary p-4;
+    @apply w-full overflow-x-scroll rounded-lg bg-secondary p-4;
   }
 
   .no-scrollbar::-webkit-scrollbar {
