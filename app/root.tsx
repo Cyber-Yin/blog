@@ -1,20 +1,43 @@
 import {
   Links,
   Meta,
+  MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
 
+import CommentProvider from "./components/CommentProvider/provider";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import styles from "./tailwind.css?url";
 
 export const links = () => {
-  return [{ rel: "stylesheet", href: styles }];
+  return [
+    { rel: "stylesheet", href: styles },
+    {
+      rel: "preconnect",
+      href: "https://fonts.googleapis.com",
+    },
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossOrigin: "anonymous",
+    },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&display=swap",
+    },
+  ];
+};
+
+export const meta: MetaFunction = () => {
+  return [{ title: "胤•居" }];
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="zh-CN">
       <head>
         <meta charSet="utf-8" />
         <meta
@@ -24,8 +47,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="bg-primary text-primary">
+        <Header />
+        <CommentProvider>
+          <main className="mx-auto min-h-screen w-full max-w-screen-lg px-6 pt-16">
+            {children}
+          </main>
+        </CommentProvider>
+        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>
