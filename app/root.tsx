@@ -51,7 +51,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Header />
         <CommentProvider>
           <main className="mx-auto min-h-screen w-full max-w-screen-lg px-6 pt-16">
-            {children}
+            <div className="space-y-6 py-8">{children}</div>
           </main>
         </CommentProvider>
         <Footer />

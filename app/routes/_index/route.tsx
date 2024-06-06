@@ -54,15 +54,13 @@ export default function IndexPage() {
   }>();
 
   return (
-    <div className="space-y-6 py-8">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        {data.posts.map((post) => (
-          <PostCard
-            key={post.id}
-            post={post}
-          />
-        ))}
-      </div>
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {data.posts.map((post) => (
+        <PostCard
+          key={post.id}
+          post={post}
+        />
+      ))}
     </div>
   );
 }

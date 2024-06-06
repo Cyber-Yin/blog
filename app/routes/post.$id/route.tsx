@@ -129,7 +129,7 @@ export default function PostPage() {
   };
 
   return (
-    <div className="space-y-6 py-8">
+    <>
       <div
         className="markdown space-y-6"
         dangerouslySetInnerHTML={{ __html: data.markdown }}
@@ -144,6 +144,6 @@ export default function PostPage() {
       >
         <MessageSquare />
       </div>
-    </div>
+    </>
   );
 }
