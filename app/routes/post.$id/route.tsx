@@ -176,8 +176,14 @@ export default function PostPage() {
         className="markdown space-y-6"
         dangerouslySetInnerHTML={{ __html: data.markdown }}
       ></div>
+      <hr className="border-2 border-dashed border-secondary" />
       <div className="space-y-6">
-        <div className="text-2xl font-bold">评论</div>
+        <div className="flex w-full items-center justify-between">
+          <div className="text-2xl font-bold">评论</div>
+          <div className="text-xs text-secondary sm:text-sm">
+            发表评论请点击右侧悬浮按钮
+          </div>
+        </div>
         <CommentCard comments={data.comments} />
       </div>
       <div

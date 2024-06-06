@@ -39,7 +39,7 @@ export default function LinksPage() {
 
   return (
     <>
-      <div>综合类</div>
+      <div className="text-xl font-bold sm:text-2xl">综合类</div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {data.friends
           .filter((friend) => friend.type === 0)
@@ -50,7 +50,7 @@ export default function LinksPage() {
             />
           ))}
       </div>
-      <div>生活类</div>
+      <div className="text-xl font-bold sm:text-2xl">生活类</div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {data.friends
           .filter((friend) => friend.type === 1)
@@ -61,7 +61,7 @@ export default function LinksPage() {
             />
           ))}
       </div>
-      <div>技术类</div>
+      <div className="text-xl font-bold sm:text-2xl">技术类</div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {data.friends
           .filter((friend) => friend.type === 2)

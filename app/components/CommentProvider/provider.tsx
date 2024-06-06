@@ -1,4 +1,5 @@
 import axios from "axios";
+import dayjs from "dayjs";
 import { createContext, useEffect, useState } from "react";
 
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
@@ -196,7 +197,7 @@ const CommentModal: React.FC<{
                     {selectedComment.created_at}
                   </div>
                 </div>
-                <div className="overflow-hidden whitespace-pre rounded-md bg-secondary px-3 py-2 text-sm/6">
+                <div className="overflow-hidden whitespace-pre rounded-md bg-secondary px-3 py-2 text-sm/8">
                   {selectedComment.content}
                 </div>
               </div>
@@ -282,10 +283,12 @@ const CommentModal: React.FC<{
                   <div>{selectedComment.nick}</div>
                 )}
                 <div className="text-xs text-secondary">
-                  {selectedComment.created_at}
+                  {dayjs
+                    .unix(selectedComment.created_at)
+                    .format("YYYY-MM-DD HH:mm:ss")}
                 </div>
               </div>
-              <div className="overflow-hidden whitespace-pre rounded-md bg-secondary px-3 py-2 text-sm/6">
+              <div className="overflow-hidden whitespace-pre rounded-md bg-secondary px-3 py-2 text-sm/8">
                 {selectedComment.content}
               </div>
             </div>

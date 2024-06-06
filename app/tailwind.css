@@ -31,6 +31,18 @@
     --font-secondary: #cbd5e0;
   }
 
+  .markdown h2 {
+    @apply text-xl font-bold underline decoration-theme decoration-4 underline-offset-8	sm:text-2xl;
+  }
+
+  .markdown h3 {
+    @apply text-lg font-bold sm:text-xl;
+  }
+
+  .markdown h4 {
+    @apply text-sm font-bold sm:text-base;
+  }
+
   .markdown p {
     @apply break-all text-justify text-sm/8 md:text-base/8;
   }

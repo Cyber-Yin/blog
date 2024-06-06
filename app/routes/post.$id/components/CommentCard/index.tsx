@@ -1,4 +1,5 @@
 import { useParams } from "@remix-run/react";
+import dayjs from "dayjs";
 import { MessageSquare } from "lucide-react";
 
 import {
@@ -15,25 +16,31 @@ const CommentCard: React.FC<{
 }> = ({ comments }) => {
   return (
     <div className="w-full space-y-6 rounded-lg bg-secondary p-4 sm:p-5">
-      {comments.map((comment) => (
-        <CommentContent
-          key={comment.id}
-          comment={{
-            ...comment,
-            reply_id: 0,
-            reply_nick: "",
-          }}
-          isReply={false}
-        >
-          {comment.replys.map((reply) => (
-            <CommentContent
-              key={reply.id}
-              comment={reply}
-              isReply={true}
-            ></CommentContent>
-          ))}
-        </CommentContent>
-      ))}
+      {comments.length > 0 ? (
+        comments.map((comment) => (
+          <CommentContent
+            key={comment.id}
+            comment={{
+              ...comment,
+              reply_id: 0,
+              reply_nick: "",
+            }}
+            isReply={false}
+          >
+            {comment.replys.map((reply) => (
+              <CommentContent
+                key={reply.id}
+                comment={reply}
+                isReply={true}
+              ></CommentContent>
+            ))}
+          </CommentContent>
+        ))
+      ) : (
+        <div className="text-center text-base font-bold text-secondary sm:text-lg">
+          暂无评论
+        </div>
+      )}
     </div>
   );
 };
@@ -81,10 +88,10 @@ const CommentContent: React.FC<{
               <div className="text-base sm:text-lg">{comment.nick}</div>
             )}
             <div className="text-xs text-secondary sm:text-sm">
-              {comment.created_at}
+              {dayjs.unix(comment.created_at).format("YYYY-MM-DD HH:mm:ss")}
             </div>
           </div>
-          <div className="overflow-hidden whitespace-pre rounded-md bg-comment p-3 text-justify text-sm/6 sm:p-4 sm:text-base">
+          <div className="overflow-hidden whitespace-pre rounded-md bg-comment p-3 text-justify text-sm/8 sm:p-4 sm:text-base/8">
             {comment.content}
           </div>
         </div>

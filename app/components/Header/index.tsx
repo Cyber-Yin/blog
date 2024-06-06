@@ -7,7 +7,7 @@ const Header: React.FC = () => {
     <header className="fixed left-0 right-0 top-0 z-10 flex h-16 items-center justify-between bg-secondary px-6 shadow">
       <h1
         onClick={() => navigate("/")}
-        className="cursor-pointer text-lg font-bold transition-colors hover:text-theme"
+        className="cursor-pointer text-lg font-bold transition-colors hover:text-theme sm:text-xl"
       >
         胤•居
       </h1>
