@@ -53,3 +53,15 @@ model comments {
 
     @@index([is_hidden, post_id])
 }
+
+model friends {
+    id          Int    @id @default(autoincrement())
+    name        String @db.VarChar(255)
+    link        String @db.VarChar(255)
+    description String @db.Text
+    avatar_url  String @db.VarChar(255)
+    type        Int    @db.UnsignedInt
+    sort        Int    @db.UnsignedInt
+
+    @@index([sort])
+}
