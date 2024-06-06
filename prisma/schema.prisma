@@ -8,19 +8,48 @@ datasource db {
 }
 
 model posts {
-    id          Int    @id @default(autoincrement())
-    title       String @db.VarChar(255)
-    description String @db.Text
-    content_url String @db.VarChar(255)
-    category    String @db.VarChar(255)
-    is_hidden   Int    @db.UnsignedTinyInt
-    created_at  Int    @db.UnsignedInt
-    updated_at  Int    @db.UnsignedInt
-    additions   Json?  @db.Json
+    id          Int      @id @default(autoincrement())
+    title       String   @db.VarChar(255)
+    description String   @db.Text
+    content_url String   @db.VarChar(255)
+    cover_url   String   @db.VarChar(255)
+    category    String   @db.VarChar(255)
+    series      Int?     @db.UnsignedInt
+    is_hidden   Int      @db.UnsignedTinyInt
+    sort        Int      @db.UnsignedInt
+    created_at  DateTime @db.DateTime
+    updated_at  DateTime @db.DateTime
+    additions   Json?    @db.Json
 
-    @@index([is_hidden, title])
+    @@index([is_hidden, sort, title])
+    @@index([is_hidden, series, sort])
+}
+
+model series {
+    id        Int    @id @default(autoincrement())
+    title     String @db.VarChar(255)
+    cover_url String @db.VarChar(255)
+    is_hidden Int    @db.UnsignedTinyInt
+    sort      Int    @db.UnsignedInt
+    additions Json?  @db.Json
+
+    @@index([is_hidden, sort])
 }
 
 model comments {
-    id Int @id @default(autoincrement())
+    id         Int     @id @default(autoincrement())
+    post_id    Int     @db.UnsignedInt
+    is_hidden  Int     @db.UnsignedTinyInt
+    created_at Int     @db.UnsignedInt
+    nick       String  @db.VarChar(255)
+    email      String  @db.VarChar(255)
+    email_md5  String  @db.VarChar(32)
+    link       String? @db.VarChar(255)
+    content    String  @db.LongText
+    parent_id  Int?    @db.UnsignedInt
+    reply_id   Int?    @db.UnsignedInt
+    reply_nick String? @db.VarChar(255)
+    additions  Json?   @db.Json
+
+    @@index([is_hidden, post_id])
 }
