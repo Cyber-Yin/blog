@@ -1,0 +1,12 @@
+node_modules
+build
+
+.env
+.env.example
+
+.gitignore
+Dockerfile
+.prettierignore
+.prettierrc.json
+.github
+.vscode
