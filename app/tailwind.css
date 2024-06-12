@@ -55,6 +55,14 @@
     @apply w-full overflow-x-scroll rounded-lg bg-secondary p-4;
   }
 
+  .markdown ul {
+    @apply list-inside list-disc text-xs/6 md:text-sm/8;
+  }
+
+  .markdown a {
+    @apply text-theme underline-offset-2 hover:underline;
+  }
+
   .no-scrollbar::-webkit-scrollbar {
     width: 0px !important;
     height: 0px !important;
