@@ -47,6 +47,10 @@
     @apply break-all text-justify text-sm/8 md:text-base/8;
   }
 
+  .markdown p code {
+    @apply rounded-lg bg-secondary px-2 py-1 text-xs/6 text-theme sm:text-sm/8;
+  }
+
   .markdown img {
     @apply rounded-lg;
   }
@@ -61,6 +65,14 @@
 
   .markdown a {
     @apply text-theme underline-offset-2 hover:underline;
+  }
+
+  .markdown blockquote {
+    @apply rounded-lg bg-secondary p-4;
+  }
+
+  .markdown blockquote p {
+    @apply text-xs/6 text-secondary sm:text-sm/8;
   }
 
   .no-scrollbar::-webkit-scrollbar {

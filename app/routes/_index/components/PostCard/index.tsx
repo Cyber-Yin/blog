@@ -21,11 +21,11 @@ const PostCard: React.FC<{
           className="h-full w-full object-cover transition-transform group-hover:scale-125"
         />
       </div>
-      <div className="flex h-48 w-full flex-col space-y-5 p-4">
+      <div className="flex h-48 w-full flex-col justify-between space-y-5 p-4">
         <h2 className="line-clamp-1 text-xl font-bold transition-colors group-hover:text-theme">
           {post.title}
         </h2>
-        <p className="line-clamp-3 text-justify text-sm/6 text-secondary transition-colors">
+        <p className="line-clamp-3 grow text-justify text-sm/6 text-secondary transition-colors">
           {post.description}
         </p>
         <div className="flex items-center space-x-2 truncate">
