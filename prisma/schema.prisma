@@ -1,67 +1,67 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model posts {
-    id          Int      @id @default(autoincrement())
-    title       String   @db.VarChar(255)
-    description String   @db.Text
-    content_url String   @db.VarChar(255)
-    cover_url   String   @db.VarChar(255)
-    category    String   @db.VarChar(255)
-    series      Int?     @db.UnsignedInt
-    is_hidden   Int      @db.UnsignedTinyInt
-    sort        Int      @db.UnsignedInt
-    created_at  DateTime @db.DateTime
-    updated_at  DateTime @db.DateTime
-    additions   Json?    @db.Json
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  description String   @db.Text
+  content_url String   @db.VarChar(255)
+  category    String   @db.VarChar(255)
+  is_hidden   Int      @db.UnsignedTinyInt
+  additions   Json?
+  cover_url   String   @db.VarChar(255)
+  sort        Int      @db.UnsignedInt
+  created_at  DateTime @db.DateTime(0)
+  updated_at  DateTime @db.DateTime(0)
+  series      Int?     @db.UnsignedInt
 
-    @@index([is_hidden, sort, title])
-    @@index([is_hidden, series, sort])
+  @@index([is_hidden, sort, title])
+  @@index([is_hidden, series, sort])
 }
 
 model series {
-    id        Int    @id @default(autoincrement())
-    title     String @db.VarChar(255)
-    cover_url String @db.VarChar(255)
-    is_hidden Int    @db.UnsignedTinyInt
-    sort      Int    @db.UnsignedInt
-    additions Json?  @db.Json
+  id        Int    @id @default(autoincrement())
+  title     String @db.VarChar(255)
+  cover_url String @db.VarChar(255)
+  is_hidden Int    @db.UnsignedTinyInt
+  sort      Int    @db.UnsignedInt
+  additions Json?
 
-    @@index([is_hidden, sort])
+  @@index([is_hidden, sort])
 }
 
 model comments {
-    id         Int     @id @default(autoincrement())
-    post_id    Int     @db.UnsignedInt
-    is_hidden  Int     @db.UnsignedTinyInt
-    created_at Int     @db.UnsignedInt
-    nick       String  @db.VarChar(255)
-    email      String  @db.VarChar(255)
-    email_md5  String  @db.VarChar(32)
-    link       String? @db.VarChar(255)
-    content    String  @db.LongText
-    parent_id  Int?    @db.UnsignedInt
-    reply_id   Int?    @db.UnsignedInt
-    reply_nick String? @db.VarChar(255)
-    additions  Json?   @db.Json
+  id         Int     @id @default(autoincrement())
+  additions  Json?
+  content    String  @db.LongText
+  created_at Int     @db.UnsignedInt
+  email      String  @db.VarChar(255)
+  email_md5  String  @db.VarChar(32)
+  is_hidden  Int     @db.UnsignedTinyInt
+  link       String? @db.VarChar(255)
+  nick       String  @db.VarChar(255)
+  post_id    Int     @db.UnsignedInt
+  reply_id   Int?    @db.UnsignedInt
+  reply_nick String? @db.VarChar(255)
+  parent_id  Int?    @db.UnsignedInt
 
-    @@index([is_hidden, post_id])
+  @@index([is_hidden, post_id])
 }
 
 model friends {
-    id          Int    @id @default(autoincrement())
-    name        String @db.VarChar(255)
-    link        String @db.VarChar(255)
-    description String @db.Text
-    avatar_url  String @db.VarChar(255)
-    type        Int    @db.UnsignedInt
-    sort        Int    @db.UnsignedInt
+  id          Int    @id @default(autoincrement())
+  name        String @db.VarChar(255)
+  link        String @db.VarChar(255)
+  description String @db.Text
+  avatar_url  String @db.VarChar(255)
+  type        Int    @db.UnsignedInt
+  sort        Int    @db.UnsignedInt
 
-    @@index([sort])
+  @@index([sort])
 }

@@ -18,17 +18,17 @@
   }
 
   :root {
-    --theme: #0bc5ea;
+    --theme: #fb7185;
 
-    --border-primary: #2d3748;
-    --border-secondary: #4a5568;
+    --border-primary: #4a4b50;
+    --border-secondary: #3b3d42;
 
-    --background-primary: #171923;
-    --background-secondary: #2d3748;
-    --background-comment: #282c34;
+    --background-primary: #2f2f2f;
+    --background-secondary: #252627;
+    --background-comment: #404040;
 
-    --font-primary: #ffffff;
-    --font-secondary: #cbd5e0;
+    --font-primary: #f5f5f5;
+    --font-secondary: #73747b;
   }
 
   .markdown h2 {
@@ -47,12 +47,32 @@
     @apply break-all text-justify text-sm/8 md:text-base/8;
   }
 
+  .markdown p code {
+    @apply rounded-lg bg-secondary px-2 py-1 text-xs/6 text-theme sm:text-sm/8;
+  }
+
   .markdown img {
     @apply rounded-lg;
   }
 
   .markdown pre {
-    @apply w-full overflow-x-scroll rounded-lg bg-secondary p-4;
+    @apply w-full overflow-x-scroll rounded-lg bg-secondary p-4 text-sm/7 md:text-base/8;
+  }
+
+  .markdown ul {
+    @apply list-inside list-disc text-xs/6 md:text-sm/8;
+  }
+
+  .markdown a {
+    @apply text-theme underline-offset-2 hover:underline;
+  }
+
+  .markdown blockquote {
+    @apply rounded-lg bg-secondary p-4;
+  }
+
+  .markdown blockquote p {
+    @apply text-xs/6 text-secondary sm:text-sm/8;
   }
 
   .no-scrollbar::-webkit-scrollbar {

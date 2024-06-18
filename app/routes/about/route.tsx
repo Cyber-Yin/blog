@@ -16,7 +16,7 @@ export default function AboutPage() {
           <a
             href="https://react.dev"
             target="_blank"
-            className="text-primary transition-colors hover:text-theme"
+            className="text-theme underline-offset-2 hover:underline"
           >
             React
           </a>
@@ -24,7 +24,7 @@ export default function AboutPage() {
           <a
             href="https://nodejs.org"
             target="_blank"
-            className="text-primary transition-colors hover:text-theme"
+            className="text-theme underline-offset-2 hover:underline"
           >
             Node.js
           </a>
@@ -32,7 +32,7 @@ export default function AboutPage() {
           <a
             href="https://www.rust-lang.org"
             target="_blank"
-            className="text-primary transition-colors hover:text-theme"
+            className="text-theme underline-offset-2 hover:underline"
           >
             Rust
           </a>

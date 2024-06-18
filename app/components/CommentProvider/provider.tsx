@@ -203,7 +203,7 @@ const CommentModal: React.FC<{
               </div>
             </div>
           )}
-          <div className="no-scrollbar max-h-[50vh] w-full space-y-4 overflow-y-scroll pb-4 pt-2">
+          <div className="no-scrollbar max-h-[50vh] w-full space-y-4 overflow-y-scroll py-2">
             <div className="text-sm">昵称</div>
             <Input
               value={nick}
@@ -229,7 +229,7 @@ const CommentModal: React.FC<{
               placeholder="请输入评论内容"
             />
           </div>
-          <div className="flex w-full items-center justify-between">
+          <div className="mt-4 flex w-full items-center justify-between">
             <div className="flex items-center space-x-2">
               <Checkbox
                 checked={rememberMe}
