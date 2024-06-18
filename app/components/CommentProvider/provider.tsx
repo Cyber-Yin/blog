@@ -1,3 +1,4 @@
+import { useRevalidator } from "@remix-run/react";
 import axios from "axios";
 import dayjs from "dayjs";
 import { createContext, useEffect, useState } from "react";
@@ -68,6 +69,7 @@ const CommentModal: React.FC<{
   setSelectedComment,
 }) => {
   const { isMobile } = useMediaQuery();
+  const revalidator = useRevalidator();
 
   const [nick, setNick] = useState("");
   const [email, setEmail] = useState("");
@@ -125,6 +127,10 @@ const CommentModal: React.FC<{
       }
 
       handleClose();
+
+      if (revalidator.state === "idle") {
+        revalidator.revalidate();
+      }
     } catch (e) {
     } finally {
       setLoading(false);
