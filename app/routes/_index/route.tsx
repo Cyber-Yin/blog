@@ -30,6 +30,9 @@ export const loader: LoaderFunction = async ({ request }) => {
       {
         sort: "desc",
       },
+      {
+        created_at: "desc",
+      },
     ],
   });
 
