@@ -4,11 +4,13 @@ export default function AboutPage() {
       <div className="mx-auto aspect-square w-72 overflow-hidden rounded-lg">
         <img
           className="h-full w-full"
-          src="https://cdn.zengjunyin.com/image/about.jpg"
-          alt="about"
+          src="https://cdn.zengjunyin.com/image/c48de2be-6c0d-438c-9e24-6332d64d0fbc.png"
+          alt="avatar"
         />
       </div>
-      <div className="w-full text-center text-xl font-bold sm:text-2xl">胤</div>
+      <div className="w-full text-center text-xl font-bold sm:text-2xl">
+        CyberYin
+      </div>
       <div className="w-full space-y-6 overflow-hidden rounded-lg bg-secondary p-4">
         <h2 className="text-lg font-bold sm:text-xl">关于我</h2>
         <p className="w-full text-justify text-sm/8 sm:text-base/8">

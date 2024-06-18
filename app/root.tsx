@@ -32,7 +32,7 @@ export const links = () => {
 };
 
 export const meta: MetaFunction = () => {
-  return [{ title: "胤•居" }];
+  return [{ title: "CyberYin's Blog" }];
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
